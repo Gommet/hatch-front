@@ -1,0 +1,17 @@
+.circle{
+    width: 29px;
+    height:29px;
+    line-height: 25px;
+    background-color: green;
+    color:white;
+    border-radius:50%;
+    border: 2px solid transparent;
+}
+.stepWrapper{
+    display:flex;
+    margin-bottom:20px;
+}
+.stepBlock .circleWrapper{
+    padding:0px 20px;
+
+}

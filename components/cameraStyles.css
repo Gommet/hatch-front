@@ -1,0 +1,31 @@
+@media screen and (max-width:1000px)
+{
+.home-container .container
+{
+max-width:90vw;
+}
+}
+@media screen and (max-width:678px)
+{
+.login-container
+{
+padding-top: 10%;
+}
+.home-container .container
+{
+max-width: 80vw;
+}
+.home-container form
+{
+width:90%;
+}
+.home-container .loginDesign
+{
+display: none;
+}
+.home-container .container .text
+{
+width: 100%;
+padding: 80px 20px;
+}
+}
