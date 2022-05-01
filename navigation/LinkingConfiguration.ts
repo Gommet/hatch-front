@@ -9,11 +9,19 @@ import * as Linking from 'expo-linking';
 
 import { RootStackParamList } from '../types';
 
-const linking: LinkingOptions<RootStackParamList> = {
+const linking = {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
-      MainPage: 'main',
+      Root:{screens:{SessionScreen:'session',ModalScreen: 'cache',
+      WebCamCapture:'capture',
+      WebCamScreen:'webCam',},},
+      SessionScreen:'session',
+      ModalScreen: 'cache',
+      WebCamCapture:'capture',
+      WebCamScreen:'webCam',
+    
+  
       /*Root: {
         screens: {
           TabOne: {

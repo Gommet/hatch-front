@@ -4,8 +4,10 @@
  */
 
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import  ModalScreen  from './screens/ModalScreen'; 
+import  SessionScreen  from  './screens/SessionScreen';
+import  WebCamScreen  from  './screens/WebCamScreen';
 
 declare global {
   namespace ReactNavigation {
@@ -19,10 +21,12 @@ declare global {
   NotFound: undefined;
 };*/
 export type RootStackParamList = {
-  MainPage: undefined;
+  /*ModalScreen: undefined,
+  SessionScreen: undefined,
+  WebCamScreen:undefined,*/
 }
 
-export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
+/*export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
   RootStackParamList,
   Screen
 >;
@@ -35,4 +39,4 @@ export type RootTabParamList = {
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
   BottomTabScreenProps<RootTabParamList, Screen>,
   NativeStackScreenProps<RootStackParamList>
->;
+>;*/

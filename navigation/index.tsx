@@ -3,23 +3,24 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
+import 'react-native-gesture-handler';
 import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable } from 'react-native';
-
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
-import MainScreen from '../screens/MainScreen';
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
-import LinkingConfiguration from './LinkingConfiguration';
-
+import { createStackNavigator } from 'react-navigation-stack';
+import { RootStackParamList} from '../types';
+import ModalScreen from '../screens/ModalScreen';
+import WebCamScreen from '../screens/WebCamScreen';
+import SessionScreen from '../screens/SessionScreen';
+import EnterSession from '../screens/SessionScreen';
+import linking from './LinkingConfiguration';
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
-      linking={LinkingConfiguration}
+      linking={linking}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <RootNavigator />
     </NavigationContainer>
@@ -30,32 +31,52 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
  * A root stack navigator is often used for displaying modals on top of all other content.
  * https://reactnavigation.org/docs/modal
  */
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator();
 
-/*function RootNavigator() {
+function RootNavigator() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group>
-    </Stack.Navigator>
-  );
-}*/
-function RootNavigator(){
-  return(
-    <Stack.Navigator>
-      <Stack.Screen name="MainPage" component={MainScreen}/>
+    <Stack.Navigator initialRouteName="EnterSession">
+      <Stack.Screen name="EnterSession" component={SessionScreen} />
+     <Stack.Screen name="Cache" component={ModalScreen} />
+        <Stack.Screen name="Webcam" component={WebCamScreen} />
+  
     </Stack.Navigator>
   );
 }
+
+// const RootNavigator = createStackNavigator(
+//   {
+//     EnterSession: SessionScreen,
+//     Cache: ModalScreen,
+//     WebCam: WebCamScreen
+//   },
+//   {
+//     initialRouteName: 'Home',
+//   });
+  
+ /*function RootNavigator(){
+   return(
+       <Stack.Navigator  initialRouteName="EnterSession">
+          <Stack.Screen 
+             name="EnterSession" 
+             component={SessionScreen}
+             options={({ navigation }) => ({
+               title: 'Awesome app',
+               navigate: () => (
+                <Button title="" onPress={() => navigation.navigate("Cache")} />
+               ),
+             })}/>
+           <Stack.Screen name="Cache" component={ModalScreen} />
+           <Stack.Screen name="WebCam" component={WebCamScreen} />
+     </Stack.Navigator>
+   );
+ }*/
 
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
+//const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 /*function BottomTabNavigator() {
   const colorScheme = useColorScheme();

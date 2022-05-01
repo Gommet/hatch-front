@@ -1,6 +1,5 @@
 import * as WebBrowser from 'expo-web-browser';
 import { Button, StyleSheet, TouchableOpacity } from 'react-native';
-import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
 import React, {useState} from 'react';
 import StepNavigation from './stepNavigation';
